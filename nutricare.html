@@ -1,0 +1,3294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriCare — The Future of Personalized Nutrition</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --g1: #000000;
+      --g2: #050a0f;
+      --g3: #0a111a;
+      --em: #10b981;
+      --em2: #34d399;
+      --em3: #6ee7b7;
+      --bl: #1e40af;
+      --bl2: #3b82f6;
+      --w: #ffffff;
+      --w2: rgba(255, 255, 255, 0.85);
+      --w3: rgba(255, 255, 255, 0.5);
+      --w4: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass2: rgba(16, 185, 129, 0.12);
+      --r: 16px;
+      --r2: 24px;
+      --r3: 32px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--g1);
+      color: var(--w);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--em);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s
+    }
+
+    .cursor-trail {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease-out, left 0.08s, top 0.08s
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Syne', sans-serif
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 15, 10, 0.7);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.08)
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--em), var(--em2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--w3);
+      letter-spacing: 0.02em;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover {
+      color: var(--w)
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--em), #059669);
+      color: var(--g1) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 13px !important;
+      letter-spacing: 0.03em;
+      transition: all 0.3s !important
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4)
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 5% 80px
+    }
+
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    .orb1 {
+      width: 60vw;
+      height: 60vh;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent 70%);
+      top: -10%;
+      left: -10%;
+      animation: float1 18s ease-in-out infinite alternate;
+    }
+
+    .orb2 {
+      width: 50vw;
+      height: 50vh;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.2), transparent 70%);
+      bottom: -10%;
+      right: -10%;
+      animation: float2 22s ease-in-out infinite alternate;
+    }
+
+    .orb3 {
+      width: 40vw;
+      height: 40vh;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+      top: 30%;
+      right: 15%;
+      animation: float3 25s ease-in-out infinite alternate;
+    }
+
+    @keyframes float1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(15vw, 15vh) scale(1.3);
+      }
+    }
+
+    @keyframes float2 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-15vw, -10vh) scale(1.2);
+      }
+    }
+
+    @keyframes float3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-20vw, 20vh) scale(1.4);
+      }
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%)
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 50px;
+      padding: 8px 18px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: var(--em2);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--em);
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.5)
+      }
+    }
+
+    .hero-h1 {
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px
+    }
+
+    .h1-line1 {
+      display: block;
+      color: var(--w)
+    }
+
+    .h1-line2 {
+      display: block;
+      background: linear-gradient(135deg, var(--em) 0%, var(--em2) 50%, #6ee7b7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 21px);
+      color: var(--w3);
+      line-height: 1.6;
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-weight: 300
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--em), #059669);
+      color: var(--g1);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Syne', sans-serif
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.5)
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--w);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px)
+    }
+
+    .hero-preview-card {
+      margin: 72px auto 0;
+      max-width: 340px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      transform: translateY(0);
+      animation: floatCard 6s ease-in-out infinite;
+      text-align: left;
+    }
+
+    @keyframes floatCard {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+        box-shadow: 0 40px 70px rgba(16, 185, 129, 0.1);
+      }
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--w3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .preview-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--em2);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 10px var(--em);
+    }
+
+    .preview-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: var(--w2);
+    }
+
+    .preview-bar-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .preview-bar-row span:first-child {
+      width: 55px;
+      font-weight: 500;
+    }
+
+    .preview-bar-row span:last-child {
+      width: 35px;
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .preview-bar-bg {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .preview-bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .preview-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* FLOATING SPHERES */
+    .sphere-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 48px auto 0
+    }
+
+    .sphere {
+      position: absolute;
+      border-radius: 50%;
+      animation: sphereSpin 12s linear infinite
+    }
+
+    .sphere-outer {
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      top: 0;
+      left: 0;
+      animation: sphereSpin 20s linear infinite
+    }
+
+    .sphere-mid {
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      top: 40px;
+      left: 40px;
+      animation: sphereSpin 14s linear infinite reverse;
+      background: radial-gradient(circle at 35% 35%, rgba(16, 185, 129, 0.15), transparent 60%)
+    }
+
+    .sphere-inner {
+      width: 120px;
+      height: 120px;
+      top: 80px;
+      left: 80px;
+      background: radial-gradient(circle at 35% 35%, var(--em), #059669 60%, #047857);
+      box-shadow: 0 0 60px rgba(16, 185, 129, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.2);
+      animation: spherePulse 3s ease-in-out infinite
+    }
+
+    @keyframes sphereSpin {
+      from {
+        transform: rotate(0deg)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes spherePulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 60px rgba(16, 185, 129, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.2)
+      }
+
+      50% {
+        box-shadow: 0 0 100px rgba(16, 185, 129, 0.9), inset 0 0 40px rgba(255, 255, 255, 0.3)
+      }
+    }
+
+    .orbit-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--em2);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--em)
+    }
+
+    .orbit-dot1 {
+      top: -5px;
+      left: 135px;
+      animation: orbitDot 4s linear infinite
+    }
+
+    .orbit-dot2 {
+      bottom: -5px;
+      left: 135px;
+      animation: orbitDot 6s linear infinite reverse
+    }
+
+    @keyframes orbitDot {
+      from {
+        transform: rotate(0deg) translateX(140px)
+      }
+
+      to {
+        transform: rotate(360deg) translateX(140px)
+      }
+    }
+
+    /* SECTIONS SHARED */
+    section {
+      padding: 100px 5%;
+      position: relative
+    }
+
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--em);
+      margin-bottom: 16px;
+      font-weight: 600
+    }
+
+    .section-title {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px
+    }
+
+    .section-sub {
+      font-size: 18px;
+      color: var(--w3);
+      line-height: 1.7;
+      max-width: 600px;
+      font-weight: 300
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--em), transparent);
+      border-radius: 2px;
+      margin: 24px 0
+    }
+
+    /* WHY SECTION */
+    #why {
+      background: linear-gradient(180deg, var(--g1), var(--g2))
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 60px
+    }
+
+    .why-card {
+      background: var(--glass);
+      border: 1px solid rgba(16, 185, 129, 0.1);
+      border-radius: var(--r2);
+      padding: 36px;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .why-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--glass2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s
+    }
+
+    .why-card:hover::before {
+      opacity: 1
+    }
+
+    .why-card:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.1)
+    }
+
+    .why-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 24px
+    }
+
+    .why-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    .why-card p {
+      font-size: 15px;
+      color: var(--w3);
+      line-height: 1.7
+    }
+
+    /* ONBOARDING FLOW */
+    #planner {
+      background: var(--g2);
+      padding: 100px 5%
+    }
+
+    .planner-wrap {
+      max-width: 700px;
+      margin: 0 auto
+    }
+
+    .flow-step {
+      display: none
+    }
+
+    .flow-step.active {
+      display: block;
+      animation: fadeSlide 0.5s ease forwards
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .step-indicator {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 48px;
+      justify-content: center
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: all 0.3s
+    }
+
+    .step-dot.done {
+      background: var(--em)
+    }
+
+    .step-dot.active {
+      background: var(--em);
+      width: 24px;
+      border-radius: 4px
+    }
+
+    .step-question {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em
+    }
+
+    .step-hint {
+      color: var(--w3);
+      font-size: 16px;
+      margin-bottom: 40px
+    }
+
+    .option-cards {
+      display: grid;
+      gap: 12px
+    }
+
+    .option-cards.cols2 {
+      grid-template-columns: 1fr 1fr
+    }
+
+    .option-cards.cols3 {
+      grid-template-columns: 1fr 1fr 1fr
+    }
+
+    .option-card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--r);
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 16px;
+      font-weight: 500
+    }
+
+    .option-card .card-icon {
+      font-size: 28px;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .option-card .card-text {
+      display: flex;
+      flex-direction: column
+    }
+
+    .option-card .card-title {
+      font-size: 16px;
+      font-weight: 600
+    }
+
+    .option-card .card-sub {
+      font-size: 13px;
+      color: var(--w3);
+      margin-top: 2px
+    }
+
+    .option-card:hover,
+    .option-card.selected {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: var(--em);
+      color: var(--w)
+    }
+
+    .option-card.selected {
+      box-shadow: 0 0 0 2px var(--em), 0 8px 30px rgba(16, 185, 129, 0.2)
+    }
+
+    /* SLIDER */
+    .slider-wrap {
+      margin: 20px 0 40px
+    }
+
+    .age-display {
+      font-family: 'Syne', sans-serif;
+      font-size: 72px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--em), var(--em2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 24px
+    }
+
+    .age-unit {
+      font-size: 24px;
+      color: var(--w3);
+      font-family: 'DM Sans', sans-serif
+    }
+
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--em) var(--pct, 30%), rgba(255, 255, 255, 0.1) var(--pct, 30%));
+      outline: none
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--em);
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+      border: 3px solid var(--g1)
+    }
+
+    /* CHIPS */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .chip {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      padding: 12px 22px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s
+    }
+
+    .chip:hover,
+    .chip.selected {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--em);
+      color: var(--em2)
+    }
+
+    .chip.selected {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2)
+    }
+
+    /* FLOW BUTTONS */
+    .flow-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 40px;
+      justify-content: flex-end
+    }
+
+    .btn-next {
+      background: linear-gradient(135deg, var(--em), #059669);
+      color: var(--g1);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      font-family: 'Syne', sans-serif;
+      transition: all 0.3s
+    }
+
+    .btn-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4)
+    }
+
+    .btn-back {
+      background: transparent;
+      color: var(--w3);
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s
+    }
+
+    .btn-back:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--w)
+    }
+
+    /* LOADING */
+    #loading-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      text-align: center
+    }
+
+    .neural-net {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      margin-bottom: 48px
+    }
+
+    .nn-node {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--em);
+      box-shadow: 0 0 15px var(--em);
+      animation: nnPulse 1.5s ease-in-out infinite
+    }
+
+    @keyframes nnPulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.4)
+      }
+    }
+
+    .nn-line {
+      position: absolute;
+      background: linear-gradient(90deg, var(--em), transparent);
+      height: 1px;
+      transform-origin: left center;
+      animation: nnLine 2s ease-in-out infinite
+    }
+
+    @keyframes nnLine {
+
+      0%,
+      100% {
+        opacity: 0.1
+      }
+
+      50% {
+        opacity: 0.6
+      }
+    }
+
+    .loading-text {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 16px
+    }
+
+    .loading-status {
+      font-size: 16px;
+      color: var(--em2);
+      font-weight: 500;
+      min-height: 28px;
+      transition: all 0.3s
+    }
+
+    .loading-bar {
+      width: 300px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 20px
+    }
+
+    .loading-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--em), var(--em2));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.5s ease
+    }
+
+    /* RESULTS DASHBOARD */
+    #results {
+      display: none;
+      padding: 40px 0
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 60px
+    }
+
+    .results-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px
+    }
+
+    .results-sub {
+      color: var(--w3);
+      font-size: 17px
+    }
+
+    /* MACRO CARDS */
+    .macro-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px
+    }
+
+    .macro-card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--r);
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .macro-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px
+    }
+
+    .macro-card.calories::after {
+      background: linear-gradient(90deg, var(--em), var(--em2))
+    }
+
+    .macro-card.protein::after {
+      background: linear-gradient(90deg, #3b82f6, #6366f1)
+    }
+
+    .macro-card.carbs::after {
+      background: linear-gradient(90deg, #f59e0b, #f97316)
+    }
+
+    .macro-card.fats::after {
+      background: linear-gradient(90deg, #ec4899, #f43f5e)
+    }
+
+    .macro-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 4px
+    }
+
+    .macro-label {
+      font-size: 12px;
+      color: var(--w3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase
+    }
+
+    /* MEAL CARDS */
+    .meal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px
+    }
+
+    .meal-card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--r);
+      padding: 24px;
+      transition: all 0.3s
+    }
+
+    .meal-card:hover {
+      border-color: rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.04)
+    }
+
+    .meal-time {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--em);
+      font-weight: 600;
+      margin-bottom: 8px
+    }
+
+    .meal-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .meal-desc {
+      font-size: 14px;
+      color: var(--w3);
+      line-height: 1.6
+    }
+
+    .meal-cals {
+      font-size: 13px;
+      color: var(--em2);
+      font-weight: 600;
+      margin-top: 12px
+    }
+
+    /* WATER + TIPS */
+    .tips-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px
+    }
+
+    @media(max-width:768px) {
+      .tips-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tip-card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--r);
+      padding: 24px
+    }
+
+    .tip-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .tip-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .tip-list li {
+      font-size: 14px;
+      color: var(--w3);
+      padding-left: 16px;
+      position: relative
+    }
+
+    .tip-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--em);
+      font-size: 12px;
+      line-height: 20px
+    }
+
+    .water-drops {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .drop {
+      width: 32px;
+      height: 40px;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 10px
+    }
+
+    .drop.filled {
+      background: rgba(59, 130, 246, 0.6);
+      border-color: #3b82f6;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.4)
+    }
+
+    /* ALTERNATE PLANS */
+    .alt-btn {
+      background: transparent;
+      color: var(--em2);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      transition: all 0.3s;
+      margin-top: 24px;
+      width: 100%
+    }
+
+    .alt-btn:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: var(--em)
+    }
+
+    /* FEATURES */
+    #features {
+      /* transparent for floating background */
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 60px
+    }
+
+    .feat-card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--r2);
+      padding: 32px;
+      transition: all 0.4s;
+      overflow: hidden;
+      position: relative
+    }
+
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.4s
+    }
+
+    .feat-card:hover::before {
+      opacity: 1
+    }
+
+    .feat-card:hover {
+      border-color: rgba(16, 185, 129, 0.2);
+      transform: translateY(-3px)
+    }
+
+    .feat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: rgba(16, 185, 129, 0.12);
+      margin-bottom: 12px;
+      line-height: 1
+    }
+
+    .feat-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .feat-card p {
+      font-size: 14px;
+      color: var(--w3);
+      line-height: 1.7
+    }
+
+
+    /* FOOTER */
+    footer {
+      background: transparent;
+      padding: 60px 5% 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px
+    }
+
+    .footer-brand p {
+      color: var(--w3);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-top: 12px;
+      max-width: 280px
+    }
+
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--em)
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--w3);
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: color 0.2s
+    }
+
+    .footer-col a:hover {
+      color: var(--w)
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+      color: var(--w3)
+    }
+
+    /* PAGE SECTIONS HIDDEN/SHOWN */
+    #main-site {
+      display: block
+    }
+
+    #planner-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 10, 0.7);
+      backdrop-filter: blur(25px);
+      z-index: 2000;
+      overflow-y: auto;
+      padding: 80px 5%
+    }
+
+    #planner-modal.open {
+      display: block;
+      animation: fadeIn 0.4s ease
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--w);
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      z-index: 2001;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-close:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    @media(max-width:768px) {
+      .macro-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .meal-grid {
+        grid-template-columns: 1fr
+      }
+
+      .tips-row {
+        grid-template-columns: 1fr
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .option-cards.cols3 {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .hero-stats {
+        gap: 24px
+      }
+
+      .nav-links {
+        display: none
+      }
+    }
+
+    /* AUTH STYLES */
+    #auth-container {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      /* Background is handled by .page-bg which is at z-index -1 */
+    }
+
+    .auth-card {
+      background: var(--g3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--r2);
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--em), var(--em2));
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .auth-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(to right, var(--w), var(--w2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .auth-sub {
+      color: var(--w3);
+      font-size: 15px;
+    }
+
+    .auth-input-group {
+      margin-bottom: 20px;
+    }
+
+    .auth-input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--w2);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--w);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--em);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+
+    .auth-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--em), var(--em2));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 12px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -10px var(--em);
+    }
+
+    .auth-toggle {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--w3);
+    }
+
+    .auth-toggle a {
+      color: var(--em);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .auth-toggle a:hover {
+      color: #34d399;
+    }
+
+    /* DASHBOARD STYLES */
+    #dashboard {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .dash-header {
+      margin-bottom: 40px;
+    }
+
+    .dash-title {
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--w), var(--w2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .dash-sub {
+      color: var(--w3);
+      font-size: 16px;
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .dash-card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--r2);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--em), var(--em2));
+      opacity: 0.5;
+    }
+
+    .dash-card h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: var(--w);
+    }
+
+    .dash-card p {
+      color: var(--w3);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .dash-profile-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+    }
+
+    .dash-profile-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 15px;
+    }
+
+    .dash-profile-list li span:first-child {
+      color: var(--w3);
+    }
+
+    .dash-profile-list li span:last-child {
+      color: var(--w);
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- AUTH CONTAINER -->
+  <div id="auth-container">
+
+    <!-- REGISTRATION FORM -->
+    <div id="register-section" class="auth-card">
+      <div class="auth-header">
+        <div class="auth-title">Create Account</div>
+        <div class="auth-sub">Join NutriCare today</div>
+      </div>
+      <div class="auth-input-group">
+        <label>Full Name</label>
+        <input type="text" id="regName" class="auth-input" placeholder="e.g. John Doe">
+      </div>
+      <div class="auth-input-group">
+        <label>Email Address</label>
+        <input type="email" id="regEmail" class="auth-input" placeholder="you@example.com">
+      </div>
+      <div class="auth-input-group">
+        <label>Password</label>
+        <input type="password" id="regPassword" class="auth-input" placeholder="••••••••">
+      </div>
+      <div class="auth-input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="regConfirmPassword" class="auth-input" placeholder="••••••••">
+      </div>
+      <button class="auth-btn" onclick="handleRegister()">Register</button>
+      <div class="auth-toggle">
+        Already have an account? <a href="#" onclick="toggleAuthView('login'); return false;">Log In</a>
+      </div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-section" class="auth-card" style="display: none;">
+      <div class="auth-header">
+        <div class="auth-title">Welcome Back</div>
+        <div class="auth-sub">Log in to NutriCare</div>
+      </div>
+      <div class="auth-input-group">
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" class="auth-input" placeholder="you@example.com">
+      </div>
+      <div class="auth-input-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" class="auth-input" placeholder="••••••••">
+      </div>
+      <button class="auth-btn" onclick="handleLogin()">Log In</button>
+      <div class="auth-toggle">
+        Don't have an account? <a href="#" onclick="toggleAuthView('register'); return false;">Register</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAIN SITE -->
+  <div id="main-site" style="display: none;">
+
+    <!-- DYNAMIC BACKGROUND -->
+    <div class="page-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+      <div class="grid-bg"></div>
+    </div>
+
+    <nav>
+      <div class="nav-logo">NutriCare</div>
+      <div class="nav-links">
+        <a href="#why">Why NutriCare</a>
+        <a href="#features">Features</a>
+        <a href="#" onclick="shareWebsite(); return false;">Share</a>
+        <button class="nav-cta" onclick="openPlanner()"
+          style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif">Generate Diet</button>
+        <a href="#" onclick="handleLogout(); return false;" style="color:var(--em); font-weight: 600;">Logout</a>
+      </div>
+    </nav>
+
+    <!-- USER DASHBOARD -->
+    <section id="dashboard" style="display: none;">
+      <div class="dash-header">
+        <h2 class="dash-title">Welcome back, <span id="dashName">User</span>!</h2>
+        <p class="dash-sub">Here is your NutriCare overview.</p>
+      </div>
+
+      <div class="dash-grid">
+        <!-- Profile Card -->
+        <div class="dash-card">
+          <h3>Your Profile</h3>
+          <ul class="dash-profile-list">
+            <li><span>Email:</span> <span id="dashEmail">-</span></li>
+            <li><span>Age:</span> <span id="dashAge">-</span></li>
+            <li><span>Height:</span> <span id="dashHeight">- cm</span></li>
+            <li><span>Weight:</span> <span id="dashWeight">- kg</span></li>
+            <li><span>Goal:</span> <span id="dashGoal">-</span></li>
+            <li><span>Lifestyle:</span> <span id="dashLifestyle">-</span></li>
+          </ul>
+          <button class="auth-btn" style="padding: 12px; font-size: 14px;" onclick="openPlanner()">Edit Profile /
+            Generate Diet</button>
+        </div>
+
+        <!-- Active Plan Card -->
+        <div class="dash-card">
+          <h3>Active Meal Plan</h3>
+          <p id="dashPlanStatus">You don't have an active meal plan yet.</p>
+          <button id="dashViewPlanBtn" class="btn-next" style="display: none; width: 100%;"
+            onclick="openSavedPlan()">View Current Plan</button>
+        </div>
+
+        <!-- Registered Users Card -->
+        <div class="dash-card" style="grid-column: 1 / -1;">
+          <h3>Registered Users Directory</h3>
+          <p>Information about all users who have registered and logged in to the platform.</p>
+          <div id="dashUsersList"
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-content">
+        <h1 class="hero-h1">
+          <span class="h1-line1">Eat Smarter.</span>
+          <span class="h1-line2">Live Better.</span>
+        </h1>
+        <p class="hero-sub">Generated nutrition plans built uniquely for your body, goals, and lifestyle.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="openPlanner()">Generate My Diet →</button>
+          <button class="btn-secondary"
+            onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Explore Features</button>
+        </div>
+        <div class="sphere-container">
+          <div class="sphere sphere-outer"></div>
+          <div class="sphere sphere-mid"></div>
+          <div class="sphere sphere-inner"></div>
+          <div class="orbit-dot orbit-dot1"></div>
+          <div class="orbit-dot orbit-dot2"></div>
+        </div>
+        <div class="hero-preview-card">
+          <div class="preview-header">
+            <div class="preview-dot"></div>
+            <span>Live Macro Targets Sync</span>
+          </div>
+          <div class="preview-body">
+            <div class="preview-bar-row">
+              <span>Protein</span>
+              <div class="preview-bar-bg">
+                <div class="preview-bar-fill" style="width:75%; background:#93c5fd"></div>
+              </div>
+              <span>140g</span>
+            </div>
+            <div class="preview-bar-row">
+              <span>Carbs</span>
+              <div class="preview-bar-bg">
+                <div class="preview-bar-fill" style="width:50%; background:#fcd34d"></div>
+              </div>
+              <span>200g</span>
+            </div>
+            <div class="preview-bar-row">
+              <span>Fats</span>
+              <div class="preview-bar-bg">
+                <div class="preview-bar-fill" style="width:40%; background:#f9a8d4"></div>
+              </div>
+              <span>60g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why">
+      <div class="section-label">Why NutriCare</div>
+      <h2 class="section-title">Nutrition that knows you.</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Most diets fail because they're generic. NutriCare builds around your biology, not someone
+        else's template.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🧬</div>
+          <h3>Hyper-Personalized</h3>
+          <p>Your age, gender, goals, and health conditions shape every single meal suggestion — no two plans are the
+            same.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <h3>AI-Driven Engine</h3>
+          <p>Our model analyzes 200+ nutrition parameters to generate plans with clinical precision in under 60 seconds.
+          </p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔄</div>
+          <h3>Adaptive Plans</h3>
+          <p>Don't like a meal? Swap it instantly. The engine regenerates alternatives that still hit your macro
+            targets.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🩺</div>
+          <h3>Condition-Aware</h3>
+          <p>Diabetes, PCOS, thyroid, blood pressure — every condition is accounted for with medically-informed food
+            choices.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📊</div>
+          <h3>Full Dashboard</h3>
+          <p>Track macros, calories, water intake, BMI, and weekly progress — all in one beautifully designed space.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🌱</div>
+          <h3>Every Diet Type</h3>
+          <p>Vegan, vegetarian, eggetarian, or omnivore — culturally appropriate meals that fit your preferences
+            perfectly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="section-label">Platform Features</div>
+      <h2 class="section-title">Everything you need.</h2>
+      <div class="divider"></div>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-num">01</div>
+          <h3>Smart Macro Calculator</h3>
+          <p>Precise calorie, protein, carb, and fat targets calculated using your TDEE, body composition, and activity
+            level.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">02</div>
+          <h3>Neural Meal Engine</h3>
+          <p>Deep-learning model trained on 50,000+ nutritionist-approved meal combinations for optimal health outcomes.
+          </p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">03</div>
+          <h3>3 Alternate Plans</h3>
+          <p>One click generates three completely different meal plans that still meet your exact nutrition goals.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">04</div>
+          <h3>BMI & Body Metrics</h3>
+          <p>Built-in BMI calculator with personalized interpretation and recommended target ranges based on your
+            profile.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">05</div>
+          <h3>Hydration Tracker</h3>
+          <p>Personalized water intake targets with visual tracking — because hydration is half the battle.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">06</div>
+          <h3>Weekly Progress View</h3>
+          <p>Beautiful charts showing your nutritional consistency, streak tracking, and goal completion percentage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="font-size:24px">NutriCare</div>
+          <p>The future of personalized nutrition. AI-powered meal plans for every body, every goal, every life.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#">AI Planner</a><a href="#">Dashboard</a><a href="#">Meal Library</a><a href="#">API Access</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Press</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a><a href="#">Cookies</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 NutriCare. All rights reserved.</span>
+        <span style="color:var(--em)">Made with intelligence.</span>
+      </div>
+    </footer>
+
+  </div><!-- end main-site -->
+
+  <!-- PLANNER MODAL -->
+  <div id="planner-modal">
+    <button class="modal-close" onclick="closePlanner()">✕ Exit</button>
+
+    <!-- ONBOARDING FLOW -->
+    <div id="onboarding-flow">
+      <!-- USER INFO STEP -->
+      <div id="user-info-step" style="max-width:640px;margin:0 auto;display:block">
+        <div style="margin-bottom:48px;text-align:center">
+          <div class="nav-logo" style="font-size:20px;margin-bottom:16px">NutriCare</div>
+          <div style="font-size:16px;color:var(--w3);margin-bottom:40px">Let's get started! Tell us who you are</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:40px">
+          <div>
+            <label style="display:block;font-size:14px;color:var(--w3);margin-bottom:8px;font-weight:600">Your
+              Name</label>
+            <input type="text" id="userName" placeholder="Enter your full name"
+              style="width:100%;padding:14px 20px;border-radius:50px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.2);color:var(--w);outline:none;font-family:'DM Sans',sans-serif;font-size:15px;transition:all 0.3s;"
+              onfocus="this.style.borderColor='var(--em)'; this.style.boxShadow='0 0 15px rgba(16,185,129,0.2)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.boxShadow='none'">
+          </div>
+
+          <div>
+            <label style="display:block;font-size:14px;color:var(--w3);margin-bottom:8px;font-weight:600">Your
+              Email</label>
+            <input type="email" id="userEmail" placeholder="Enter your email address"
+              style="width:100%;padding:14px 20px;border-radius:50px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.2);color:var(--w);outline:none;font-family:'DM Sans',sans-serif;font-size:15px;transition:all 0.3s;"
+              onfocus="this.style.borderColor='var(--em)'; this.style.boxShadow='0 0 15px rgba(16,185,129,0.2)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.boxShadow='none'">
+          </div>
+
+          <div
+            style="display:flex;align-items:center;gap:10px;padding:14px 20px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:12px">
+            <input type="checkbox" id="enableNotifications" checked style="cursor:pointer;width:18px;height:18px">
+            <label for="enableNotifications" style="cursor:pointer;font-size:14px;color:var(--w3);flex:1">Enable
+              notifications for meal & water reminders</label>
+          </div>
+        </div>
+
+        <button class="btn-primary" style="width:100%;padding:16px 32px;font-size:16px;"
+          onclick="startQuestionnaire()">Continue to Questionnaire →</button>
+      </div>
+
+      <!-- QUESTIONNAIRE STEPS -->
+      <div id="questionnaire-steps" style="max-width:640px;margin:0 auto;display:none">
+        <div style="margin-bottom:48px">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+            <div class="nav-logo" style="font-size:20px;">NutriCare</div>
+            <button onclick="openSettings()"
+              style="background:none;border:none;color:var(--w3);cursor:pointer;font-size:20px;transition:color 0.3s;"
+              onmouseover="this.style.color='var(--em)'" onmouseout="this.style.color='var(--w3)'"
+              title="Gemini API Settings">⚙️</button>
+          </div>
+          <div style="font-size:14px;color:var(--w3)">Your personalized plan in 8 quick steps</div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-dot active" id="dot0"></div>
+          <div class="step-dot" id="dot1"></div>
+          <div class="step-dot" id="dot2"></div>
+          <div class="step-dot" id="dot3"></div>
+          <div class="step-dot" id="dot4"></div>
+          <div class="step-dot" id="dot5"></div>
+          <div class="step-dot" id="dot6"></div>
+          <div class="step-dot" id="dot7"></div>
+        </div>
+
+        <!-- STEP 1: AGE -->
+        <div class="flow-step active" id="step0">
+          <div class="step-question">How old are you?</div>
+          <div class="step-hint">Your age shapes your metabolic rate and nutritional needs.</div>
+          <div class="slider-wrap">
+            <style>
+              input[type=number]::-webkit-inner-spin-button,
+              input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+
+              input[type=number] {
+                -moz-appearance: textfield;
+              }
+            </style>
+            <div class="age-display">
+              <input type="number" id="ageVal" value="25" min="13" max="100" onchange="syncAgeFromInput()"
+                style="background:transparent; border:none; border-bottom:2px solid transparent; color:var(--em); font-family:'Syne',sans-serif; font-size:56px; font-weight:800; width:100px; text-align:center; outline:none; transition:border-color 0.3s; padding:0;"
+                onfocus="this.style.borderColor='var(--em)'" onblur="this.style.borderColor='transparent'">
+              <span class="age-unit">yrs</span>
+            </div>
+            <input type="range" min="13" max="100" value="25" id="ageSlider" oninput="syncAgeFromSlider(this.value)">
+          </div>
+          <div class="flow-actions"><button class="btn-next" onclick="nextStep(0)">Continue →</button></div>
+        </div>
+
+        <!-- STEP 1: GENDER -->
+        <div class="flow-step" id="step1">
+          <div class="step-question">Your gender?</div>
+          <div class="step-hint">Hormonal differences significantly affect nutritional requirements.</div>
+          <div class="option-cards cols2" style="margin-bottom:8px">
+            <div class="option-card" onclick="selectOption(this,'gender')">
+              <div class="card-icon">♂</div>
+              <div class="card-text"><span class="card-title">Male</span><span class="card-sub">Higher baseline caloric
+                  needs</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'gender')">
+              <div class="card-icon">♀</div>
+              <div class="card-text"><span class="card-title">Female</span><span class="card-sub">Hormone-sensitive
+                  nutrition</span></div>
+            </div>
+          </div>
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(1)">← Back</button>
+            <button class="btn-next" onclick="nextStep(1)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: WEIGHT -->
+        <div class="flow-step" id="step2">
+          <div class="step-question">What is your weight?</div>
+          <div class="step-hint">Used to calculate your daily energy expenditure accurately.</div>
+          <div class="slider-wrap">
+            <div class="age-display">
+              <input type="number" id="weightVal" value="70" min="30" max="200" onchange="syncWeightFromInput()"
+                style="background:transparent; border:none; border-bottom:2px solid transparent; color:var(--em); font-family:'Syne',sans-serif; font-size:56px; font-weight:800; width:120px; text-align:center; outline:none; transition:border-color 0.3s; padding:0;"
+                onfocus="this.style.borderColor='var(--em)'" onblur="this.style.borderColor='transparent'">
+              <span class="age-unit">kg</span>
+            </div>
+            <input type="range" min="30" max="200" value="70" id="weightSlider"
+              oninput="syncWeightFromSlider(this.value)">
+          </div>
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(2)">← Back</button>
+            <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: HEIGHT -->
+        <div class="flow-step" id="step3">
+          <div class="step-question">What is your height?</div>
+          <div class="step-hint">Required for accurate basal metabolic rate (BMR) calculations.</div>
+          <div class="slider-wrap">
+            <div class="age-display">
+              <input type="number" id="heightVal" value="170" min="100" max="250" onchange="syncHeightFromInput()"
+                style="background:transparent; border:none; border-bottom:2px solid transparent; color:var(--em); font-family:'Syne',sans-serif; font-size:56px; font-weight:800; width:80px; text-align:center; outline:none; transition:border-color 0.3s; padding:0; margin-right:50px;"
+                onfocus="this.style.borderColor='var(--em)'" onblur="this.style.borderColor='transparent'">
+              <span class="age-unit">cm</span>
+            </div>
+            <input type="range" min="100" max="250" value="170" id="heightSlider"
+              oninput="syncHeightFromSlider(this.value)">
+          </div>
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(3)">← Back</button>
+            <button class="btn-next" onclick="nextStep(3)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: GOAL -->
+        <div class="flow-step" id="step4">
+          <div class="step-question">Your primary goal?</div>
+          <div class="step-hint">This determines your caloric target and macro split.</div>
+          <div class="option-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="option-card" onclick="selectOption(this,'goal')">
+              <div class="card-icon">💪</div>
+              <div class="card-text"><span class="card-title">Bulking</span><span class="card-sub">Calorie surplus for
+                  muscle gain</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'goal')">
+              <div class="card-icon">🔥</div>
+              <div class="card-text"><span class="card-title">Fat Loss</span><span class="card-sub">Calorie deficit,
+                  lean body</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'goal')">
+              <div class="card-icon">⚖️</div>
+              <div class="card-text"><span class="card-title">Maintain Weight</span><span class="card-sub">Balanced
+                  caloric parity</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'goal')">
+              <div class="card-icon">🌿</div>
+              <div class="card-text"><span class="card-title">Healthy Lifestyle</span><span
+                  class="card-sub">Nutrient-dense, balanced</span></div>
+            </div>
+          </div>
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(4)">← Back</button>
+            <button class="btn-next" onclick="nextStep(4)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: HEALTH -->
+        <div class="flow-step" id="step5">
+          <div class="step-question">Any health conditions?</div>
+          <div class="step-hint">Select all that apply. Your plan will be medically informed.</div>
+          <div class="chips" id="health-chips">
+            <div class="chip" onclick="toggleChip(this)">Diabetes</div>
+            <div class="chip" onclick="toggleChip(this)">High BP</div>
+            <div class="chip" onclick="toggleChip(this)">Low BP</div>
+            <div class="chip" onclick="toggleChip(this)">Thyroid</div>
+            <div class="chip" onclick="toggleChip(this)">PCOS</div>
+            <div class="chip selected" onclick="toggleChip(this)">None</div>
+            <div class="chip" onclick="toggleChip(this)">Custom</div>
+          </div>
+          <input type="text" id="customDiseaseInput" placeholder="Type your condition here..."
+            style="display:none; width:100%; margin-top:16px; padding:14px 20px; border-radius:50px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.2); color:var(--w); outline:none; font-family:'DM Sans',sans-serif; font-size:15px; transition:all 0.3s;"
+            onfocus="this.style.borderColor='var(--em)'; this.style.boxShadow='0 0 15px rgba(16,185,129,0.2)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.boxShadow='none'">
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(5)">← Back</button>
+            <button class="btn-next" onclick="nextStep(5)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: FOOD PREF -->
+        <div class="flow-step" id="step6">
+          <div class="step-question">Food preference?</div>
+          <div class="step-hint">We'll only suggest meals you can and want to eat.</div>
+          <div class="option-cards cols2">
+            <div class="option-card" onclick="selectOption(this,'food')">
+              <div class="card-icon">🥗</div>
+              <div class="card-text"><span class="card-title">Vegetarian</span><span class="card-sub">No meat or
+                  fish</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'food')">
+              <div class="card-icon">🍗</div>
+              <div class="card-text"><span class="card-title">Non-Vegetarian</span><span class="card-sub">All food
+                  groups</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'food')">
+              <div class="card-icon">🌱</div>
+              <div class="card-text"><span class="card-title">Vegan</span><span class="card-sub">No animal
+                  products</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'food')">
+              <div class="card-icon">🥚</div>
+              <div class="card-text"><span class="card-title">Eggetarian</span><span class="card-sub">Vegetarian +
+                  eggs</span></div>
+            </div>
+          </div>
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(6)">← Back</button>
+            <button class="btn-next" onclick="nextStep(6)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 7: LIFESTYLE -->
+        <div class="flow-step" id="step7">
+          <div class="step-question">Your activity level?</div>
+          <div class="step-hint">This calibrates your total daily energy expenditure.</div>
+          <div class="option-cards">
+            <div class="option-card" onclick="selectOption(this,'lifestyle')">
+              <div class="card-icon">🪑</div>
+              <div class="card-text"><span class="card-title">Sedentary</span><span class="card-sub">Desk job, minimal
+                  movement daily</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'lifestyle')">
+              <div class="card-icon">🚶</div>
+              <div class="card-text"><span class="card-title">Moderate</span><span class="card-sub">Light exercise 3-4
+                  days/week</span></div>
+            </div>
+            <div class="option-card" onclick="selectOption(this,'lifestyle')">
+              <div class="card-icon">🏋️</div>
+              <div class="card-text"><span class="card-title">Active Athlete</span><span class="card-sub">Intense
+                  training 5+ days/week</span></div>
+            </div>
+          </div>
+          <div class="flow-actions">
+            <button class="btn-back" onclick="prevStep(7)">← Back</button>
+            <button class="btn-next" onclick="generatePlan()">Generate My Plan →</button>
+          </div>
+        </div>
+
+      </div> <!-- end questionnaire-steps -->
+    </div> <!-- end onboarding-flow -->
+
+
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen"
+      style="min-height:80vh;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <div class="neural-net" id="neuralNet"></div>
+      <div class="loading-text">Building your<br><span
+          style="background:linear-gradient(135deg,var(--em),var(--em2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">NutriCare
+          Plan</span></div>
+      <div class="loading-status" id="loadingStatus">Analyzing metabolism...</div>
+      <div class="loading-bar">
+        <div class="loading-progress" id="loadingBar"></div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results" style="max-width:800px;margin:0 auto;display:none">
+      <div class="results-header">
+        <div class="hero-badge" style="margin:0 auto 20px;display:inline-flex">✓ Plan Generated</div>
+        <div class="results-title">Your Personalized<br><span
+            style="background:linear-gradient(135deg,var(--em),var(--em2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Nutrition
+            Plan</span></div>
+        <div class="results-sub" id="planTagline"></div>
+      </div>
+      <div class="macro-grid" id="macroGrid"></div>
+      <div class="meal-grid" id="mealGrid"></div>
+      <div class="tips-row">
+        <div class="tip-card">
+          <h4>💧 Daily Hydration</h4>
+          <div style="font-size:13px;color:var(--w3);margin-bottom:12px">Track your <span id="waterTarget">8</span>
+            glasses today</div>
+          <div class="water-drops" id="waterDrops"></div>
+        </div>
+        <div class="tip-card">
+          <h4>💡 Smart Tips</h4>
+          <ul class="tip-list" id="tipsList"></ul>
+        </div>
+        <div class="tip-card">
+          <h4>⏱️ Goal Estimator</h4>
+          <div style="font-size:14px;color:var(--w3);line-height:1.6;margin-top:12px" id="goalEstimatorText"></div>
+          <div
+            style="margin-top:16px; font-size:12px; color:var(--em); font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">
+            Consistency is key</div>
+        </div>
+      </div>
+      <button class="alt-btn" onclick="generateAltPlans()">↻ I Don't Like This Plan — Show Alternatives</button>
+      <button class="alt-btn"
+        style="margin-top: 12px; background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;"
+        onclick="resetPlanner()">+ Create Plan for Another Person</button>
+    </div>
+
+
+  </div><!-- end planner-modal -->
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    function shareWebsite() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'NutriCare',
+          text: 'Check out NutriCare — The Future of Personalized Nutrition!',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          alert('Website link copied to clipboard!');
+        }).catch(err => {
+          console.error('Could not copy text: ', err);
+          alert('Could not copy link to clipboard.');
+        });
+      }
+    }
+
+    window.currentMealsData = [];
+
+
+    let userProfile = {
+      name: '',
+      email: '',
+      enableNotifications: true,
+      age: 25,
+      height: 170,
+      weight: 70,
+      gender: '',
+      goal: '',
+      health: [],
+      food: '',
+      lifestyle: '',
+      savedMealPlan: null,
+      mealTimes: { breakfast: '08:00', lunch: '12:30', snack: '15:00', dinner: '19:00' }
+    };
+
+    let currentStep = 0;
+    let userData = { age: 25, height: 170, weight: 70, gender: '', goal: '', health: [], food: '', lifestyle: '' };
+    let geminiKey = localStorage.getItem('nutricare_gemini_key') || '';
+    let planIndex = 0;
+
+    function loadUserProfile() {
+      const saved = localStorage.getItem('nutricare_user_profile');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          userProfile = { ...userProfile, ...parsed };
+          // Ensure mealTimes exists in case of old saved data
+          if (!userProfile.mealTimes) {
+            userProfile.mealTimes = { breakfast: '08:00', lunch: '12:30', snack: '15:00', dinner: '19:00' };
+          }
+          userData = { ...userData, ...userProfile };
+        } catch (e) {
+          console.error("Failed to parse saved profile", e);
+        }
+      }
+    }
+
+    function saveUserProfile() {
+      localStorage.setItem('nutricare_user_profile', JSON.stringify(userProfile));
+    }
+
+    // --- AUTH LOGIC ---
+    let usersDb = JSON.parse(localStorage.getItem('nutricare_users')) || [];
+    let currentUser = localStorage.getItem('nutricare_auth');
+
+    function toggleAuthView(view) {
+      if (view === 'login') {
+        $('register-section').style.display = 'none';
+        $('login-section').style.display = 'block';
+      } else {
+        $('login-section').style.display = 'none';
+        $('register-section').style.display = 'block';
+      }
+    }
+
+    function handleRegister() {
+      const name = $('regName').value.trim();
+      const email = $('regEmail').value.trim();
+      const pwd = $('regPassword').value;
+      const cpwd = $('regConfirmPassword').value;
+
+      if (!name || !email || !pwd) return showError('Please fill in all fields.');
+      if (pwd !== cpwd) return showError('Passwords do not match.');
+      if (usersDb.find(u => u.email === email)) return showError('Email already registered.');
+
+      usersDb.push({ name, email, password: pwd });
+      localStorage.setItem('nutricare_users', JSON.stringify(usersDb));
+
+      // Clear inputs
+      $('regName').value = '';
+      $('regEmail').value = '';
+      $('regPassword').value = '';
+      $('regConfirmPassword').value = '';
+
+      showError('Registration successful! Logging you in...');
+
+      // Auto login after registration
+      $('loginEmail').value = email;
+      $('loginPassword').value = pwd;
+      handleLogin();
+    }
+
+    function showDashboard() {
+      // Hide landing page elements
+      $('hero').style.display = 'none';
+      if ($('why')) $('why').style.display = 'none';
+      if ($('features')) $('features').style.display = 'none';
+
+      // Show Dashboard
+      $('dashboard').style.display = 'block';
+      $('dashName').textContent = userProfile.name || 'User';
+
+      // Populate Profile
+      $('dashEmail').textContent = userProfile.email || '-';
+      $('dashAge').textContent = userProfile.age || '-';
+      $('dashHeight').textContent = (userProfile.height || '-') + ' cm';
+      $('dashWeight').textContent = (userProfile.weight || '-') + ' kg';
+      $('dashGoal').textContent = userProfile.goal || '-';
+      $('dashLifestyle').textContent = userProfile.lifestyle || '-';
+
+      // Check for active plan
+      if (userProfile.savedMealPlan && userProfile.savedMealPlan.meals) {
+        $('dashPlanStatus').innerHTML = '<span style="color:var(--em); font-weight:600;">Active plan available!</span><br><span style="font-size:13px;">Generated ' + new Date(userProfile.savedMealPlan.date).toLocaleDateString() + '</span>';
+        $('dashViewPlanBtn').style.display = 'block';
+      } else {
+        $('dashPlanStatus').innerHTML = 'You don\'t have an active meal plan yet.';
+        $('dashViewPlanBtn').style.display = 'none';
+      }
+
+      // Populate Registered Users Directory
+      const usersList = JSON.parse(localStorage.getItem('nutricare_users')) || [];
+      $('dashUsersList').innerHTML = usersList.map(u => `
+        <div style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 600; color: var(--w);">${u.name}</div>
+            <div style="font-size: 11px; padding: 4px 8px; background: rgba(16, 185, 129, 0.1); color: var(--em); border-radius: 4px;">Registered</div>
+          </div>
+          <div style="font-size: 13px; color: var(--w3);">${u.email}</div>
+        </div>
+      `).join('');
+    }
+
+    function openSavedPlan() {
+      if (userProfile.savedMealPlan && userProfile.savedMealPlan.meals) {
+        $('planner-modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        $('onboarding-flow').style.display = 'none';
+        $('hero').style.display = 'none';
+        $('results').style.display = 'block';
+        window.currentMealsData = userProfile.savedMealPlan.meals;
+        showResults();
+      }
+    }
+
+    function handleLogin() {
+      const email = $('loginEmail').value.trim();
+      const pwd = $('loginPassword').value;
+
+      const user = usersDb.find(u => u.email === email && u.password === pwd);
+      if (user) {
+        localStorage.setItem('nutricare_auth', email);
+        currentUser = email;
+
+        // Update current profile
+        userProfile.name = user.name;
+        userProfile.email = user.email;
+        saveUserProfile();
+
+        $('auth-container').style.display = 'none';
+        $('main-site').style.display = 'block';
+        showDashboard();
+
+        $('userName').value = user.name;
+        $('userEmail').value = user.email;
+      } else {
+        showError('Invalid email or password.');
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('nutricare_auth');
+      location.reload();
+    }
+    // ------------------
+    function startQuestionnaire() {
+      const name = $('userName').value.trim();
+      const email = $('userEmail').value.trim();
+
+      if (!name) return showError('Please enter your name.');
+      if (!email || !email.includes('@')) return showError('Please enter a valid email.');
+
+      userProfile.name = name;
+      userProfile.email = email;
+      userProfile.enableNotifications = $('enableNotifications').checked;
+
+      saveUserProfile();
+
+      // Request notification permission if enabled
+      if (userProfile.enableNotifications && 'Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+
+      // Hide user info step, show questionnaire
+      $('user-info-step').style.display = 'none';
+      $('questionnaire-steps').style.display = 'block';
+
+      // Initialize questionnaire
+      updateDots();
+    }
+
+    function scheduleNotifications(mealPlan) {
+      if (!userProfile.enableNotifications) return;
+
+      const times = userProfile.mealTimes || { breakfast: '08:00', lunch: '12:30', snack: '15:00', dinner: '19:00' };
+
+      // Schedule breakfast notification
+      if (mealPlan[0] && mealPlan[0].data) scheduleNotification('Breakfast', `Time for breakfast: ${mealPlan[0].data.name}`, times.breakfast);
+
+      // Schedule lunch notification
+      if (mealPlan[1] && mealPlan[1].data) scheduleNotification('Lunch', `Time for lunch: ${mealPlan[1].data.name}`, times.lunch);
+
+      // Schedule snack notification
+      if (mealPlan[2] && mealPlan[2].data) scheduleNotification('Snack', `Time for your snack: ${mealPlan[2].data.name}`, times.snack);
+
+      // Schedule dinner notification
+      if (mealPlan[3] && mealPlan[3].data) scheduleNotification('Dinner', `Time for dinner: ${mealPlan[3].data.name}`, times.dinner);
+
+      // Schedule water reminders every 2 hours
+      scheduleWaterReminders();
+    }
+
+    function scheduleNotification(title, message, timeString) {
+      const [hours, minutes] = timeString.split(':').map(Number);
+      const now = new Date();
+      const notifyTime = new Date();
+      notifyTime.setHours(hours, minutes, 0);
+
+      // If time has passed today, schedule for tomorrow
+      if (notifyTime <= now) {
+        notifyTime.setDate(notifyTime.getDate() + 1);
+      }
+
+      const timeUntil = notifyTime - now;
+
+      setTimeout(() => {
+        if ('Notification' in window && Notification.permission === 'granted') {
+          new Notification(`NutriCare - ${title}`, {
+            body: message,
+            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%2310b981"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="white" font-weight="bold">NC</text></svg>',
+            tag: title.toLowerCase(),
+            requireInteraction: false
+          });
+        }
+      }, timeUntil);
+
+      // Reschedule for next day
+      setTimeout(() => scheduleNotification(title, message, timeString), timeUntil + 60000);
+    }
+
+    function scheduleWaterReminders() {
+      if (!userProfile.enableNotifications) return;
+
+      const waterTimes = ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+
+      waterTimes.forEach(timeString => {
+        scheduleNotification('💧 Water Reminder', 'Time to drink a glass of water! Stay hydrated.', timeString);
+      });
+    }
+
+    function loadSavedMealPlan() {
+      const saved = localStorage.getItem('nutricare_saved_meal_plan');
+      if (saved) {
+        userProfile.savedMealPlan = JSON.parse(saved);
+        return true;
+      }
+      return false;
+    }
+
+    function saveMealPlan(mealPlan) {
+      userProfile.savedMealPlan = {
+        meals: mealPlan,
+        savedDate: new Date().toISOString(),
+        profile: {
+          age: userData.age,
+          gender: userData.gender,
+          weight: userData.weight,
+          height: userData.height,
+          goal: userData.goal,
+          food: userData.food,
+          lifestyle: userData.lifestyle
+        }
+      };
+      localStorage.setItem('nutricare_saved_meal_plan', JSON.stringify(userProfile.savedMealPlan));
+      saveUserProfile();
+    }
+
+
+    // Custom cursor
+    const cur = $('cursor'), trail = $('cursorTrail');
+    let tx = 0, ty = 0, mx = 0, my = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    function animateCursor() {
+      // Update cursor position
+      cur.style.left = mx + 'px';
+      cur.style.top = my + 'px';
+
+      // Smooth interpolation for trail
+      tx += (mx - tx) * 0.15;
+      ty += (my - ty) * 0.15;
+      trail.style.left = tx + 'px';
+      trail.style.top = ty + 'px';
+
+      requestAnimationFrame(animateCursor);
+    }
+    requestAnimationFrame(animateCursor);
+    document.querySelectorAll('button,.option-card,.chip,.why-card,.feat-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cur.style.width = '20px'; cur.style.height = '20px'; cur.style.background = 'rgba(16,185,129,0.6)' });
+      el.addEventListener('mouseleave', () => { cur.style.width = '12px'; cur.style.height = '12px'; cur.style.background = 'var(--em)' });
+    });
+
+    // Number counters
+    function animateCounters() {
+      document.querySelectorAll('[data-target]').forEach(el => {
+        const target = parseFloat(el.dataset.target);
+        let current = 0;
+        const step = target / 60;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = target % 1 === 0 ? Math.round(current) : current.toFixed(1);
+          if (current >= target) clearInterval(timer);
+        }, 25);
+      });
+    }
+    setTimeout(animateCounters, 500);
+
+    // Age slider - separated input and slider syncing
+    function syncAgeFromInput() {
+      let age = parseInt($('ageVal').value);
+      if (isNaN(age) || age < 13) age = 13;
+      if (age > 100) age = 100;
+      $('ageVal').value = age;
+      $('ageSlider').value = age;
+      userData.age = age;
+      updateAgeSliderDisplay(age);
+    }
+
+    function syncAgeFromSlider(v) {
+      let age = parseInt(v);
+      $('ageVal').value = age;
+      userData.age = age;
+      updateAgeSliderDisplay(age);
+    }
+
+    function updateAgeSliderDisplay(age) {
+      const pct = Math.max(0, Math.min(100, ((age - 13) / (100 - 13) * 100))) + '%';
+      $('ageSlider').style.setProperty('--pct', pct);
+      $('ageSlider').style.background = `linear-gradient(90deg,var(--em) ${pct},rgba(255,255,255,0.1) ${pct})`;
+    }
+
+    // Weight slider - separated input and slider syncing
+    function syncWeightFromInput() {
+      let weight = parseInt($('weightVal').value);
+      if (isNaN(weight) || weight < 30) weight = 30;
+      if (weight > 200) weight = 200;
+      $('weightVal').value = weight;
+      $('weightSlider').value = weight;
+      userData.weight = weight;
+      updateWeightSliderDisplay(weight);
+    }
+
+    function syncWeightFromSlider(v) {
+      let weight = parseInt(v);
+      $('weightVal').value = weight;
+      userData.weight = weight;
+      updateWeightSliderDisplay(weight);
+    }
+
+    function updateWeightSliderDisplay(weight) {
+      const pct = Math.max(0, Math.min(100, ((weight - 30) / (200 - 30) * 100))) + '%';
+      $('weightSlider').style.setProperty('--pct', pct);
+      $('weightSlider').style.background = `linear-gradient(90deg,var(--em) ${pct},rgba(255,255,255,0.1) ${pct})`;
+    }
+
+    // Height slider - separated input and slider syncing
+    function syncHeightFromInput() {
+      let height = parseInt($('heightVal').value);
+      if (isNaN(height) || height < 100) height = 100;
+      if (height > 250) height = 250;
+      $('heightVal').value = height;
+      $('heightSlider').value = height;
+      userData.height = height;
+      updateHeightSliderDisplay(height);
+    }
+
+    function syncHeightFromSlider(v) {
+      let height = parseInt(v);
+      $('heightVal').value = height;
+      userData.height = height;
+      updateHeightSliderDisplay(height);
+    }
+
+    function updateHeightSliderDisplay(height) {
+      const pct = Math.max(0, Math.min(100, ((height - 100) / (250 - 100) * 100))) + '%';
+      $('heightSlider').style.setProperty('--pct', pct);
+      $('heightSlider').style.background = `linear-gradient(90deg,var(--em) ${pct},rgba(255,255,255,0.1) ${pct})`;
+    }
+
+    // Old update functions - kept for backward compatibility but replaced with new logic
+    function updateAge(v) {
+      syncAgeFromInput();
+    }
+    function updateWeight(v) {
+      syncWeightFromInput();
+    }
+    function updateHeight(v) {
+      syncHeightFromInput();
+    }
+
+    // Initialize slider displays
+    updateAgeSliderDisplay(25);
+    updateWeightSliderDisplay(70);
+    updateHeightSliderDisplay(170);
+
+    function selectOption(el, key) {
+      el.closest('.option-cards').querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      userData[key] = el.querySelector('.card-title').textContent;
+
+      // Auto-generate as soon as the final input (lifestyle) is provided
+      if (key === 'lifestyle') {
+        generatePlan();
+      }
+    }
+    function toggleChip(el) {
+      if (el.textContent === 'None') {
+        document.querySelectorAll('#health-chips .chip').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        $('customDiseaseInput').style.display = 'none';
+      } else {
+        document.querySelector('#health-chips .chip:nth-child(6)').classList.remove('selected');
+        el.classList.toggle('selected');
+      }
+
+      const customChip = Array.from(document.querySelectorAll('#health-chips .chip')).find(c => c.textContent === 'Custom');
+      if (customChip && customChip.classList.contains('selected')) {
+        $('customDiseaseInput').style.display = 'block';
+      } else {
+        $('customDiseaseInput').style.display = 'none';
+      }
+    }
+    function showError(msg) {
+      const toast = document.createElement('div');
+      toast.style.position = 'fixed';
+      toast.style.bottom = '40px';
+      toast.style.left = '50%';
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      toast.style.background = '#ef4444';
+      toast.style.color = '#fff';
+      toast.style.padding = '14px 28px';
+      toast.style.borderRadius = '50px';
+      toast.style.fontWeight = '600';
+      toast.style.fontSize = '15px';
+      toast.style.zIndex = '3000';
+      toast.style.boxShadow = '0 10px 25px rgba(239, 68, 68, 0.4)';
+      toast.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      toast.innerHTML = '⚠️ ' + msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.style.transform = 'translateX(-50%) translateY(0)', 10);
+      setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        setTimeout(() => toast.remove(), 400);
+      }, 3000);
+    }
+
+    function nextStep(n) {
+      if (n === 1 && !userData.gender) return showError('Please select your gender.');
+
+      if (n === 3) {
+        const heightM = userData.height / 100;
+        const bmi = userData.weight / (heightM * heightM);
+        let recommendedGoal = '';
+        let bmiCategory = '';
+
+        if (bmi < 18.5) {
+          bmiCategory = 'Underweight';
+          recommendedGoal = 'Bulking';
+        } else if (bmi >= 25) {
+          bmiCategory = 'Overweight';
+          recommendedGoal = 'Fat Loss';
+        } else {
+          bmiCategory = 'Healthy Weight';
+          recommendedGoal = 'Healthy Lifestyle';
+        }
+
+        userData.goal = recommendedGoal;
+
+        const toast = document.createElement('div');
+        toast.style.position = 'fixed';
+        toast.style.bottom = '40px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.background = '#10b981';
+        toast.style.color = '#fff';
+        toast.style.padding = '14px 28px';
+        toast.style.borderRadius = '50px';
+        toast.style.fontWeight = '600';
+        toast.style.fontSize = '15px';
+        toast.style.zIndex = '3000';
+        toast.style.boxShadow = '0 10px 25px rgba(16, 185, 129, 0.4)';
+        toast.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        toast.innerHTML = `💡 BMI: ${bmi.toFixed(1)} (${bmiCategory}). Suggested Goal: ${recommendedGoal}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.style.transform = 'translateX(-50%) translateY(0)', 10);
+        setTimeout(() => {
+          toast.style.transform = 'translateX(-50%) translateY(100px)';
+          setTimeout(() => toast.remove(), 400);
+        }, 4000);
+
+        document.querySelectorAll('#step4 .option-card').forEach(card => {
+          if (card.querySelector('.card-title').textContent === recommendedGoal) {
+            card.classList.add('selected');
+          } else {
+            card.classList.remove('selected');
+          }
+        });
+      }
+
+      if (n === 4 && !userData.goal) return showError('Please select your primary goal.');
+      if (n === 5) {
+        const conds = document.querySelectorAll('#health-chips .chip.selected');
+        if (conds.length === 0) return showError('Please select a health condition or "None".');
+        if (Array.from(conds).find(c => c.textContent === 'Custom') && !$('customDiseaseInput').value.trim()) {
+          return showError('Please type your custom condition.');
+        }
+      }
+      if (n === 6 && !userData.food) return showError('Please select your food preference.');
+
+      $('step' + n).classList.remove('active');
+      currentStep = n + 1;
+      $('step' + currentStep).classList.add('active');
+      updateDots();
+    }
+    function prevStep(n) {
+      $('step' + n).classList.remove('active');
+      currentStep = n - 1;
+      $('step' + currentStep).classList.add('active');
+      updateDots();
+    }
+    function updateDots() {
+      for (let i = 0; i < 8; i++) {
+        const d = $('dot' + i);
+        if (!d) continue;
+        d.className = 'step-dot';
+        if (i < currentStep) d.classList.add('done');
+        if (i === currentStep) d.classList.add('active');
+      }
+    }
+    function openPlanner() {
+      $('planner-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Show the onboarding flow and initialize
+      $('onboarding-flow').style.display = 'block';
+      resetPlanner();
+    }
+    function closePlanner() {
+      $('planner-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Build neural net animation
+    function buildNeuralNet() {
+      const nn = $('neuralNet');
+      nn.innerHTML = '';
+      const nodes = [[20, 50], [20, 100], [20, 150], [80, 30], [80, 80], [80, 130], [80, 170], [140, 50], [140, 100], [140, 150], [200, 75], [200, 125]];
+      const connections = [[0, 3], [0, 4], [1, 3], [1, 4], [1, 5], [2, 4], [2, 5], [2, 6], [3, 7], [3, 8], [4, 7], [4, 8], [4, 9], [5, 8], [5, 9], [6, 9], [7, 10], [7, 11], [8, 10], [8, 11], [9, 10], [9, 11]];
+      connections.forEach((c, i) => {
+        const n1 = nodes[c[0]], n2 = nodes[c[1]];
+        const dx = n2[0] - n1[0], dy = n2[1] - n1[1];
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+        const line = document.createElement('div');
+        line.className = 'nn-line';
+        Object.assign(line.style, { left: n1[0] + 5 + 'px', top: n1[1] + 5 + 'px', width: len + 'px', transform: `rotate(${ang}deg)`, animationDelay: (i * 0.08) + 's' });
+        nn.appendChild(line);
+      });
+      nodes.forEach((n, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'nn-node';
+        Object.assign(dot.style, { left: n[0] + 'px', top: n[1] + 'px', animationDelay: (i * 0.12) + 's' });
+        nn.appendChild(dot);
+      });
+    }
+
+    async function generatePlan() {
+      if (!userData.lifestyle) return showError('Please select your activity level.');
+
+      // Save profile to localStorage for auto-generation on reload
+      localStorage.setItem('nutricare_profile', JSON.stringify(userData));
+
+      $('hero').style.display = 'none';
+      $('onboarding-flow').style.display = 'none';
+      const ls = $('loading-screen');
+      ls.style.display = 'flex';
+      buildNeuralNet();
+
+      const msgs = ['Analyzing metabolism...', 'Calculating macros...', 'Building nutrition profile...', 'Generating optimal plan...', 'Optimizing meal sequences...', 'Finalizing your NutriCare plan...'];
+      let msgIndex = 0;
+      const status = $('loadingStatus');
+      const bar = $('loadingBar');
+
+      const interval = setInterval(() => {
+        msgIndex = Math.min(msgIndex + 1, msgs.length - 1);
+        status.textContent = msgs[msgIndex];
+        bar.style.width = ((msgIndex / msgs.length) * 80) + '%';
+      }, 900);
+
+      // AI generation logic has been removed. Proceeding directly with offline database.
+      status.textContent = 'Using Offline Meal Database...';
+
+      clearInterval(interval);
+      bar.style.width = '100%';
+      setTimeout(() => { ls.style.display = 'none'; showResults(); }, 500);
+    }
+
+    function getCalories() {
+      let base = Math.round((10 * userData.weight) + (6.25 * userData.height) - (5 * userData.age) + (userData.gender === 'Female' ? -161 : 5));
+      if (userData.lifestyle === 'Moderate') base += 300;
+      if (userData.lifestyle === 'Active Athlete') base += 600;
+      if (userData.goal === 'Bulking') base += 400;
+      if (userData.goal === 'Fat Loss') base -= 400;
+      if (userData.goal === 'Healthy Lifestyle') base += 100;
+      return base;
+    }
+
+    const mealDB = {
+      breakfast: [
+        // Vegetarian
+        {
+          name: 'Masala Oats with Almonds',
+          desc: 'Rolled oats cooked with turmeric, cumin, and topped with raw almonds and chia seeds',
+          cals: 320,
+          ingredients: [
+            { item: "Rolled Oats", amount: "40g", cals: 150, protein: "5g" },
+            { item: "Almonds", amount: "15g", cals: 85, protein: "3g" },
+            { item: "Chia Seeds", amount: "10g", cals: 50, protein: "2g" },
+            { item: "Mixed Veggies", amount: "50g", cals: 35, protein: "2g" }
+          ],
+          instructions: [
+            "Dry roast oats in a pan for 2 mins.",
+            "In a separate pan, sauté veggies with cumin and turmeric.",
+            "Add 1.5 cups of water and bring to a boil.",
+            "Add oats, cover and cook for 5 mins.",
+            "Garnish with chopped almonds and chia seeds."
+          ]
+        },
+        { name: 'Moong Dal Cheela', desc: 'Protein-rich green gram pancakes with mint chutney and low-fat yogurt', cals: 280 },
+        { name: 'Greek Yogurt Parfait', desc: 'Full-fat Greek yogurt with mixed berries, flaxseeds, and a drizzle of raw honey', cals: 290 },
+        { name: 'Poha with Peanuts', desc: 'Flattened rice cooked with turmeric, curry leaves, and roasted peanuts', cals: 310 },
+        { name: 'Paneer Bhurji Toast', desc: 'Spiced scrambled cottage cheese served on 2 slices of whole wheat toast', cals: 360 },
+        // Vegan
+        { name: 'Quinoa Upma', desc: 'Protein-packed quinoa cooked with vegetables, mustard seeds, and curry leaves', cals: 340 },
+        { name: 'Tofu Scramble', desc: 'Crumbled firm tofu cooked with turmeric, nutritional yeast, and spinach', cals: 290 },
+        { name: 'Chia Seed Pudding', desc: 'Chia seeds soaked overnight in almond milk, topped with fresh berries', cals: 260 },
+        // Eggetarian
+        { name: 'Egg White Veggie Scramble', desc: '3 egg whites with spinach, tomatoes, and bell peppers on whole grain toast', cals: 310 },
+        { name: 'Boiled Eggs & Avocado Toast', desc: '2 boiled eggs sliced over whole wheat avocado toast', cals: 350 },
+        { name: 'Mushroom & Spinach Omelette', desc: '2 whole eggs folded with sauteed mushrooms and spinach, served with a side of fruit', cals: 330 },
+        // Non-Veg
+        { name: 'Chicken Sausage Wrap', desc: 'Whole wheat wrap filled with lean chicken sausage, lettuce, and hummus', cals: 380 },
+        { name: 'Smoked Salmon Bagel', desc: 'Half whole grain bagel with smoked salmon, cucumber, and a thin spread of cream cheese', cals: 340 }
+      ],
+      lunch: [
+        // Vegetarian
+        {
+          name: 'Dal Makhani with Brown Rice',
+          desc: 'Slow-cooked black lentils in a light tomato base, served with fiber-rich brown rice',
+          cals: 520,
+          ingredients: [
+            { item: "Black Lentils (Urad Dal)", amount: "50g", cals: 170, protein: "12g" },
+            { item: "Brown Rice", amount: "60g", cals: 215, protein: "5g" },
+            { item: "Tomato Puree", amount: "50g", cals: 20, protein: "1g" },
+            { item: "Low-fat Butter/Ghee", amount: "10g", cals: 90, protein: "0g" },
+            { item: "Spices & Herbs", amount: "5g", cals: 25, protein: "1g" }
+          ],
+          instructions: [
+            "Soak black lentils overnight.",
+            "Pressure cook lentils until soft (approx 5-6 whistles).",
+            "In a pan, heat ghee, add cumin, tomato puree, and spices.",
+            "Add cooked lentils and simmer for 20 mins for a creamy texture.",
+            "Serve hot with steamed brown rice."
+          ]
+        },
+        { name: 'Paneer Tikka Wrap', desc: 'Spiced cottage cheese in a whole wheat wrap with cucumber raita and salad', cals: 480 },
+        { name: 'Rajma Chawal Power Bowl', desc: 'Kidney beans in aromatic gravy, brown rice, and a side of kachumber salad', cals: 540 },
+        { name: 'Chole with Multigrain Roti', desc: 'Spiced chickpea curry served with 2 multigrain rotis and cucumber salad', cals: 490 },
+        // Vegan
+        { name: 'Tofu Stir Fry with Millet', desc: 'Silken tofu with seasonal vegetables on a bed of foxtail millet', cals: 440 },
+        { name: 'Vegan Buddha Bowl', desc: 'Roasted sweet potato, chickpeas, kale, and quinoa with a tahini dressing', cals: 460 },
+        { name: 'Lentil & Spinach Soup', desc: 'Hearty bowl of mixed lentils cooked with spinach, garlic, and coconut milk', cals: 380 },
+        // Eggetarian
+        { name: 'Egg Curry with Brown Rice', desc: 'Spiced tomato gravy with 2 boiled eggs and a side of brown rice', cals: 490 },
+        { name: 'Egg Salad Sandwich', desc: 'Chopped boiled eggs mixed with Greek yogurt and mustard on whole grain bread', cals: 410 },
+        // Non-Veg
+        { name: 'Grilled Chicken Salad', desc: 'Herb-marinated chicken breast over mixed greens with olive oil and lemon dressing', cals: 420 },
+        { name: 'Lemon Herb Fish Bowl', desc: 'Baked white fish served over wild rice with a side of roasted asparagus', cals: 450 },
+        { name: 'Turkey & Cheese Sandwich', desc: 'Lean sliced turkey breast with low-fat cheese and veggies on rye bread', cals: 430 }
+      ],
+      snacks: [
+        // Vegetarian / Vegan
+        {
+          name: 'Roasted Makhana & Nuts',
+          desc: 'Fox nuts and mixed nuts with himalayan salt — high protein, low calorie crunch',
+          cals: 180,
+          ingredients: [
+            { item: "Makhana (Fox Nuts)", amount: "30g", cals: 105, protein: "3g" },
+            { item: "Mixed Nuts (Almonds, Walnuts)", amount: "10g", cals: 65, protein: "2g" },
+            { item: "Ghee", amount: "1 tsp", cals: 10, protein: "0g" }
+          ],
+          instructions: [
+            "Heat 1 tsp ghee in a heavy-bottomed pan.",
+            "Add makhana and roast on low heat until extremely crunchy (about 7-10 mins).",
+            "Toss in mixed nuts and roast for another 2 mins.",
+            "Sprinkle himalayan salt and black pepper before serving."
+          ]
+        },
+        { name: 'Apple with Almond Butter', desc: 'Sliced apple with 2 tbsp natural almond butter for sustained energy', cals: 210 },
+        { name: 'Hummus & Veggie Sticks', desc: 'Homemade hummus with cucumber, carrot, and celery sticks', cals: 160 },
+        { name: 'Roasted Chickpeas', desc: 'Oven-roasted crunchy chickpeas tossed in smoked paprika and cumin', cals: 190 },
+        // Dairy / Veg
+        { name: 'Banana Protein Smoothie', desc: 'Banana, whey protein, low-fat milk, and cinnamon — ideal post-workout', cals: 240 },
+        { name: 'Cottage Cheese Bowl', desc: 'Half cup of cottage cheese topped with pineapple chunks and walnuts', cals: 220 },
+        // Eggetarian
+        { name: 'Hard Boiled Egg & Almonds', desc: '1 hard boiled egg with a small handful of raw almonds', cals: 190 },
+        // Non-Veg
+        { name: 'Chicken Bone Broth', desc: 'A warming cup of protein-rich chicken bone broth with herbs', cals: 90 },
+        { name: 'Turkey Roll-ups', desc: 'Slices of turkey breast rolled around cucumber sticks', cals: 150 }
+      ],
+      dinner: [
+        // Vegetarian
+        {
+          name: 'Palak Paneer with Chapati',
+          desc: 'Iron-rich spinach gravy with cottage cheese, served with 2 whole wheat rotis',
+          cals: 480,
+          ingredients: [
+            { item: "Spinach (Palak)", amount: "200g", cals: 45, protein: "5g" },
+            { item: "Paneer (Cottage Cheese)", amount: "60g", cals: 180, protein: "11g" },
+            { item: "Whole Wheat Flour", amount: "50g", cals: 170, protein: "6g" },
+            { item: "Onion & Tomato", amount: "80g", cals: 35, protein: "1g" },
+            { item: "Oil/Ghee", amount: "1/2 tbsp", cals: 50, protein: "0g" }
+          ],
+          instructions: [
+            "Blanch spinach in boiling water for 2 mins, then puree it.",
+            "Sauté finely chopped onions and tomatoes with ginger-garlic paste until soft.",
+            "Add the spinach puree and cook for 5 mins on low heat.",
+            "Add paneer cubes and a pinch of garam masala. Simmer for 2 mins.",
+            "Knead wheat flour with water and make 2 soft chapatis to serve alongside."
+          ]
+        },
+        { name: 'Mixed Vegetable Khichdi', desc: 'Comfort food with moong dal, basmati rice, and seasonal vegetables', cals: 400 },
+        { name: 'Stuffed Capsicum', desc: 'Bell peppers stuffed with quinoa, chickpeas, and spiced paneer', cals: 380 },
+        { name: 'Soya Chunk Curry', desc: 'High-protein textured soy proteins cooked in a light onion-tomato gravy with 1 roti', cals: 420 },
+        // Vegan
+        { name: 'Zucchini Noodles with Pesto', desc: 'Spiralized zucchini tossed in vegan basil pesto with cherry tomatoes', cals: 310 },
+        { name: 'Tempeh Stir-fry', desc: 'Marinated tempeh strips pan-fried with broccoli and bell peppers', cals: 430 },
+        // Eggetarian
+        { name: 'Egg Fried Quinoa', desc: 'Quinoa stir-fried with seasonal veggies, soy sauce, and scrambled egg', cals: 410 },
+        { name: 'Shakshuka', desc: '2 eggs poached in a robust, spiced tomato and bell pepper sauce', cals: 360 },
+        // Non-Veg
+        { name: 'Grilled Fish with Vegetables', desc: 'Lemon-herb baked fish with steamed broccoli and sweet potato', cals: 420 },
+        { name: 'Chicken Tikka with Raita', desc: 'Tandoor-style chicken with mint yogurt dip and a cucumber side salad', cals: 460 },
+        { name: 'Lean Beef Stir-fry', desc: 'Thinly sliced lean beef cooked with snap peas, carrots, and a light soy ginger sauce', cals: 490 }
+      ]
+    };
+
+    function showResults() {
+      const $r = $('results');
+      $r.style.display = 'block';
+      $r.style.animation = 'fadeSlide 0.6s ease forwards';
+      const cals = getCalories();
+      const protein = Math.round(cals * 0.28 / 4);
+      const carbs = Math.round(cals * 0.45 / 4);
+      const fats = Math.round(cals * 0.27 / 9);
+      let condText = '';
+      const conds = Array.from(document.querySelectorAll('#health-chips .chip.selected')).map(c => c.textContent);
+      if (conds.includes('Custom') && $('customDiseaseInput').value.trim() !== '') {
+        condText = ` · Customized for ${$('customDiseaseInput').value.trim()}`;
+      } else if (conds.length > 0 && !conds.includes('None')) {
+        condText = ` · Condition aware`;
+      }
+      $('planTagline').textContent = `Optimized for ${userData.goal || 'your goal'} · ${userData.food || 'Balanced'} · ${userData.lifestyle || 'Active'} lifestyle${condText}`;
+      $('macroGrid').innerHTML = `
+    <div class="macro-card calories"><div class="macro-value" style="background:linear-gradient(135deg,var(--em),var(--em2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">${cals}</div><div class="macro-label">Calories</div></div>
+    <div class="macro-card protein"><div class="macro-value" style="color:#93c5fd">${protein}g</div><div class="macro-label">Protein</div></div>
+    <div class="macro-card carbs"><div class="macro-value" style="color:#fcd34d">${carbs}g</div><div class="macro-label">Carbs</div></div>
+    <div class="macro-card fats"><div class="macro-value" style="color:#f9a8d4">${fats}g</div><div class="macro-label">Fats</div></div>
+  `;
+      const filterMeals = (arr) => {
+        if (!arr || !Array.isArray(arr)) return [];
+        let filtered = arr.filter(m => {
+          const str = ((m.name || '') + ' ' + (m.desc || '')).toLowerCase();
+          const hasMeat = str.includes('chicken') || str.includes('fish');
+          const hasEgg = str.includes('egg');
+          const hasDairy = str.includes('paneer') || str.includes('yogurt') || str.includes('milk') || str.includes('cheese') || str.includes('whey');
+          if (userData.food === 'Vegetarian') return !hasMeat && !hasEgg;
+          if (userData.food === 'Vegan') return !hasMeat && !hasEgg && !hasDairy;
+          if (userData.food === 'Eggetarian') return !hasMeat;
+          return true;
+        });
+
+        if (userData.food === 'Eggetarian') {
+          const eggOnly = filtered.filter(m => ((m.name || '') + ' ' + (m.desc || '')).toLowerCase().includes('egg'));
+          if (eggOnly.length > 0) return eggOnly;
+        }
+        return filtered;
+      };
+      const bOpts = filterMeals(mealDB.breakfast || []);
+      const lOpts = filterMeals(mealDB.lunch || []);
+      const sOpts = filterMeals(mealDB.snacks || mealDB.snack || []);
+      const dOpts = filterMeals(mealDB.dinner || []);
+
+      const getMealDataForDay = (opts, defaultDbArr, fallbackCals, dayOffset) => {
+        if (opts && opts.length > 0) return opts[(planIndex + dayOffset) % opts.length];
+        if (defaultDbArr && defaultDbArr.length > 0) return defaultDbArr[dayOffset % defaultDbArr.length];
+        return { name: 'Balanced Meal', desc: 'Custom meal meeting your targets', cals: fallbackCals };
+      };
+
+      const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
+      let weeklyMealsData = [];
+      let weeklyMealsHTML = '';
+
+      days.forEach((day, i) => {
+        const dailyMeals = [
+          { time: 'Breakfast', data: getMealDataForDay(bOpts, mealDB.breakfast, Math.round(cals * 0.25), i) },
+          { time: 'Lunch', data: getMealDataForDay(lOpts, mealDB.lunch, Math.round(cals * 0.35), i) },
+          { time: 'Snack', data: getMealDataForDay(sOpts, mealDB.snacks || mealDB.snack, Math.round(cals * 0.15), i) },
+          { time: 'Dinner', data: getMealDataForDay(dOpts, mealDB.dinner, Math.round(cals * 0.25), i) },
+        ];
+        weeklyMealsData.push({ day, meals: dailyMeals });
+
+        weeklyMealsHTML += `<div style="grid-column: 1 / -1; margin-top: 24px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 8px;">
+          <h3 style="color: var(--em); margin: 0; font-size: 18px;">${day}</h3>
+        </div>`;
+
+        weeklyMealsHTML += dailyMeals.map((m) => {
+          const d = m.data || {};
+          return `
+    <div class="meal-card">
+      <div class="meal-time">${m.time}</div>
+      <div class="meal-name">${d.name || 'Custom Meal'}</div>
+      <div class="meal-desc">${d.desc || 'Custom generated meal to fit your macros.'}</div>
+      <div class="meal-cals">~${d.cals || 0} kcal</div>
+    </div>
+  `}).join('');
+      });
+
+      window.currentMealsData = weeklyMealsData;
+
+      // Save meal plan to local storage
+      try { saveMealPlan(weeklyMealsData); } catch (e) { console.warn("Could not save meal plan", e); }
+
+      // Schedule notifications
+      try { scheduleNotifications(weeklyMealsData[0].meals); } catch (e) { console.warn("Could not schedule notifications", e); }
+
+      $('mealGrid').innerHTML = weeklyMealsHTML;
+      const water = Math.round(cals / 250);
+      $('waterTarget').textContent = water;
+      $('waterDrops').innerHTML = Array.from({ length: water }, (_, i) => `< div class="drop" onclick = "this.classList.toggle('filled')" title = "Glass ${i + 1}" >💧</div > `).join('');
+      const tips = getTips();
+      $('tipsList').innerHTML = tips.map(t => `< li > ${t}</li > `).join('');
+      $('goalEstimatorText').innerHTML = getEstimatorText();
+    }
+
+    function getEstimatorText() {
+      let days = 90;
+      let goal = userData.goal || 'Healthy Lifestyle';
+
+      if (goal === 'Fat Loss') days = 60;
+      if (goal === 'Bulking') days = 120;
+
+      if (userData.lifestyle === 'Active Athlete') days -= 15;
+      if (userData.lifestyle === 'Moderate') days -= 5;
+      if (userData.lifestyle === 'Sedentary') days += 30;
+
+      let text = `By following this plan with <strong>90%+ consistency</strong>, you can expect to see significant ${goal.toLowerCase()} results in approximately < span style = "color:var(--w);font-weight:700;font-size:16px" > ${days} days</span >.`;
+      if (goal === 'Healthy Lifestyle') {
+        text = `By following this plan, you will start experiencing elevated energy levels, better sleep, and improved digestion in just < span style = "color:var(--w);font-weight:700;font-size:16px" > 14 to 21 days</span >.`;
+      }
+      return text;
+    }
+
+    function getTips() {
+      const tips = [];
+      const conds = Array.from(document.querySelectorAll('#health-chips .chip.selected')).map(c => c.textContent);
+      if (conds.includes('Diabetes')) tips.push('Choose low-GI foods — prefer whole grains over refined');
+      if (conds.includes('High BP')) tips.push('Limit sodium intake; avoid processed and packaged foods');
+      if (conds.includes('PCOS')) tips.push('Prioritize anti-inflammatory foods: berries, leafy greens, omega-3s');
+      if (conds.includes('Thyroid')) tips.push('Avoid raw goitrogenic vegetables; prefer cooked cruciferous');
+      if (conds.includes('Custom') && $('customDiseaseInput').value.trim() !== '') {
+        tips.push(`Custom medical protocol applied for ${$('customDiseaseInput').value.trim()} — prioritize whole foods and hydration`);
+      }
+      if (userData.goal === 'Bulking') tips.push('Eat within 30 min post-workout for optimal muscle protein synthesis');
+      if (userData.goal === 'Fat Loss') tips.push('Prioritize protein at every meal to preserve lean muscle mass');
+      tips.push('Eat slowly and mindfully — it takes 20 min for satiety signals to register');
+      tips.push('Front-load calories earlier in the day for better metabolic efficiency');
+      return tips.slice(0, 4);
+    }
+
+    function generateAltPlans() {
+      planIndex++;
+      $('results').style.animation = 'none';
+      $('results').style.opacity = '0';
+      setTimeout(() => {
+        showResults();
+        $('results').style.opacity = '1';
+        $('results').style.animation = 'fadeSlide 0.5s ease forwards';
+        $('results').scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+
+    function resetPlanner() {
+      localStorage.removeItem('nutricare_profile');
+      $('results').style.display = 'none';
+      $('onboarding-flow').style.display = 'block';
+      $('user-info-step').style.display = 'block';
+      $('questionnaire-steps').style.display = 'none';
+
+      for (let i = 0; i <= 7; i++) {
+        const step = $('step' + i);
+        if (step) step.classList.remove('active');
+      }
+      currentStep = 0;
+      $('step0').classList.add('active');
+      updateDots();
+
+      userData = { age: 25, height: 170, weight: 70, gender: '', goal: '', health: [], food: '', lifestyle: '' };
+      planIndex = 0;
+
+      document.querySelectorAll('.option-card.selected, #health-chips .chip.selected').forEach(el => el.classList.remove('selected'));
+      const noneChip = document.querySelector('#health-chips .chip:nth-child(6)');
+      if (noneChip) noneChip.classList.add('selected');
+
+      $('customDiseaseInput').style.display = 'none';
+      $('customDiseaseInput').value = '';
+
+      updateAgeSliderDisplay(25);
+      updateWeightSliderDisplay(70);
+      updateHeightSliderDisplay(170);
+    }
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.why-card,.feat-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease,transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (currentUser) {
+        $('auth-container').style.display = 'none';
+        $('main-site').style.display = 'block';
+        showDashboard();
+      } else {
+        $('auth-container').style.display = 'flex';
+        $('main-site').style.display = 'none';
+        toggleAuthView('login');
+      }
+    });
+
+    // Initialize on page load
+    loadUserProfile();
+
+    // If user is already logged in, auto-fill their basic details but do NOT auto-start the flow
+    window.addEventListener('DOMContentLoaded', () => {
+      if (userProfile.name && userProfile.email) {
+        $('userName').value = userProfile.name;
+        $('userEmail').value = userProfile.email;
+        $('enableNotifications').checked = userProfile.enableNotifications;
+      }
+    });
+
+  </script>
+</body>
+
+</html>
